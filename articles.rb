@@ -9,6 +9,14 @@ class Author
      def name #this method returns the name of the author
           @name
      end
+
+     def articles  #returns array of article instanceswritten by the author
+          Article.all.select { |article| article.author == self }
+        end
+     
+     def magazines
+     articles.map { |article| article.magazine }.uniq
+     end
 end
 
 #second class
@@ -34,6 +42,10 @@ class Magazine
           @@all
      end
 
+     
+  def contributors
+     Article.all.select { |article| article.magazine == self }.map { |article| article.author }
+   end
 end
 
 #third class
@@ -51,6 +63,7 @@ class Article
      def title
           @title
      end
+     
 
      def self.all
           @@all
