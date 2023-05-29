@@ -30,16 +30,6 @@ class Magazine
      Article.all.select { |article| article.magazine == self }.map { |article| article.title }
    end
    
-   def contributing_authors
-     authors_counts = Hash.new(0)
-     
-     Article.all.each do |article|
-       authors_counts[article.author] += 1 if article.magazine == self
-     end
-     
-     authors_counts.select { |author, count| count > 2 }.keys
-   end
-   
      
   def contributors
      Article.all.select { |article| article.magazine == self }.map { |article| article.author }
